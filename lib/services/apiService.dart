@@ -93,4 +93,54 @@ class ApiService {
     print(response.body);
     return json.decode(response.body);
   }
+
+  //<<<<<User_Authendication>>>>>//
+  Future userAuthendication(String username, String password) async {
+    final userAuthUrl = Uri.parse("http://api.somewhere.io");
+    final response = await http.post(
+      userAuthUrl,
+      body: {
+        "username": username,
+        "password": password,
+      },
+    );
+    print(response.statusCode);
+    print(response.body);
+    return json.encode(response.body);
+  }
+
+  //
+  //OR//
+  //
+  //<<<<<User_Authendication>>>>>//
+  Future userAutherization(String username, String password) async {
+    final userAuthzUrl = Uri.parse("http://api.somewhere.io");
+    String basicAuth =
+        "Basic ${base64Encode(utf8.encode("$username:$password"))}";
+    final response = await http.get(
+      userAuthzUrl,
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": basicAuth,
+      },
+    );
+    print(response.statusCode);
+    print(response.body);
+  }
+
+  //<<<<<Bearer_Authendication>>>>>//
+  Future bearerAuthendication() async {
+    final authUrl = Uri.parse("http://somewhere.io");
+
+    const accessToken = "Some access token";
+    final response = await http.get(
+      authUrl,
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": "Bearer $accessToken"
+      },
+    );
+    print(response.statusCode);
+    print(response.body);
+  }
 }
