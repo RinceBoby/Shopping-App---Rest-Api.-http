@@ -9,6 +9,7 @@ This is a minimal shopping app. In which we can add items to the cart and checko
 The state of the application is not managed with any of the state managment items. This was just to learn the basics of api integration using http method.
 
 ##Features
+- User login is avialable with the given info in the screenshot.
 - List the items in the store.
 - Fake api.
 - Rest api integration.
